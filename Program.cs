@@ -41,12 +41,9 @@
 
             sr.Close();
 
-            QuickSort.Ordenar(candidatos, 0, candidatos.Length - 1);
-
-            foreach (var c in candidatos)
-            {
-                Console.WriteLine(c);
-            }
+            QuickSort.OrdenarMat(candidatos, 0, candidatos.Length - 1);
+            QuickSort.OrdenarRed(candidatos, 0, candidatos.Length - 1);
+            QuickSort.OrdenarMedia(candidatos, 0, candidatos.Length - 1);
 
             for (int i = 0; i < candidatos.Length; i++)
             {
@@ -67,21 +64,24 @@
                 }
             }
 
+            StreamWriter sw = new StreamWriter("saida.txt");
+
             foreach (KeyValuePair<int, Curso> entry in cursos)
             {
                 Curso curso = entry.Value;
 
-                Console.WriteLine();
-                Console.WriteLine($"{curso.Nome} {curso.NotaCorte}");
+                sw.WriteLine($"{curso.Nome} {curso.NotaCorte}");
 
-                Console.WriteLine("Selecionados");
-                curso.PrintarSelecionados();
+                sw.WriteLine("Selecionados");
+                curso.PrintarSelecionados(sw);
 
-                Console.WriteLine("Fila de Espera");
-                curso.PrintarListaEspera();
+                sw.WriteLine("Fila de Espera");
+                curso.PrintarListaEspera(sw);
 
-                Console.WriteLine();
+                sw.WriteLine();
             }
+
+            sw.Close();
         }
     }
 }

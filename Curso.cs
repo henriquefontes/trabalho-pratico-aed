@@ -49,11 +49,11 @@ namespace TrabalhoPratico
             filaEspera.Adicionar(candidato);
         }
 
-        public void PrintarSelecionados()
+        public void PrintarSelecionados(StreamWriter sw)
         {
             foreach (Candidato selecionado in selecionados)
             {
-                Console.WriteLine(selecionado);
+                sw.WriteLine(selecionado);
             }
         }
 

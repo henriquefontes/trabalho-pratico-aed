@@ -15,7 +15,7 @@ namespace TrabalhoPratico
             array[j] = temp;
         }
 
-        public static void Ordenar(Candidato[] array, int esq, int dir)
+        public static void OrdenarMedia(Candidato[] array, int esq, int dir)
         {
             int i = esq, j = dir;
             Candidato pivo = array[(esq + dir) / 2];
@@ -35,9 +35,58 @@ namespace TrabalhoPratico
                 }
             }
             if (esq < j)
-                Ordenar(array, esq, j);
+                OrdenarMedia(array, esq, j);
             if (i < dir)
-                Ordenar(array, i, dir);
+                OrdenarMedia(array, i, dir);
         }
+        public static void OrdenarRed(Candidato[] array, int esq, int dir)
+        {
+            int i = esq, j = dir;
+            Candidato pivo = array[(esq + dir) / 2];
+
+            while (i <= j)
+            {
+                while (array[i].NotaRed > pivo.NotaRed)
+                    i++;
+                while (array[j].NotaRed < pivo.NotaRed)
+                    j--;
+
+                if (i <= j)
+                {
+                    Swap(array, i, j);
+                    i++;
+                    j--;
+                }
+            }
+            if (esq < j)
+                OrdenarRed(array, esq, j);
+            if (i < dir)
+                OrdenarRed(array, i, dir);
+        }
+        public static void OrdenarMat(Candidato[] array, int esq, int dir)
+        {
+            int i = esq, j = dir;
+            Candidato pivo = array[(esq + dir) / 2];
+
+            while (i <= j)
+            {
+                while (array[i].NotaMat > pivo.NotaMat)
+                    i++;
+                while (array[j].NotaMat < pivo.NotaMat)
+                    j--;
+
+                if (i <= j)
+                {
+                    Swap(array, i, j);
+                    i++;
+                    j--;
+                }
+            }
+            if (esq < j)
+                OrdenarMat(array, esq, j);
+            if (i < dir)
+                OrdenarMat(array, i, dir);
+        }
+
     }
 }
